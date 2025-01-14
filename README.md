@@ -37,6 +37,23 @@ composer require google/apiclient
 # Create Service
 ```
 sudo nano /etc/systemd/system/php-audio.service
+```
+```
+[Unit]
+Description=Bell Schedule PHP Script
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/php /var/www/html/execute.php
+User=pi
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
+```
+Then enable service:
+```
 sudo systemctl enable php-audio.service
 sudo systemctl start php-audio.service
 sudo systemctl status php-audio.service
