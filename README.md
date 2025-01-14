@@ -59,6 +59,32 @@ sudo systemctl start php-audio.service
 sudo systemctl status php-audio.service
 ```
 
+# Reboot Scheduler
+```
+sudo nano /etc/systemd/system/reboot-daily.service
+```
+```
+[Unit]
+Description=Reboot the system daily at 6 AM
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/systemctl --force reboot
+```
+Then set timer
+```
+sudo nano /etc/systemd/system/reboot-daily.timer
+```
+```
+[Unit]
+Description=Daily timer to reboot the system at 6 AM
+
+[Timer]
+OnCalendar=*-*-* 06:00:00
+
+[Install]
+WantedBy=timers.target
+```
 # Optional Video output status screen
 ```
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox cec-utils xdotool chromium-br>
