@@ -6,10 +6,11 @@ Pi based PHP service that queries Google Calendar events
 # Setup Pi
 sudo raspi-config
 Setup ip/static/etc
+sudo apt update
+sudo apt install cron
 
 # Install Apache, PHP (with cli) and Composer
 ```
-sudo apt update
 sudo apt install apache2 -y
 ```
 
@@ -28,9 +29,11 @@ Verify composer is installed
 ```
 composer --version
 ```
-Install api client for google
+Install api client for google and cron scheduler
 ```
 composer require google/apiclient
+composer require peppeocchi/php-cron-scheduler
+
 ```
 
 
