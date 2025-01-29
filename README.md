@@ -1,93 +1,46 @@
 # bellsystem
-Pi based PHP service that queries Google Calendar events
+debian based PHP service that queries Google Calendar events and schedules "at" commands to play the files
 
 
 
-# Setup Pi
-sudo raspi-config
-Setup ip/static/etc
-sudo apt update
-sudo apt install cron
+# Setup Debian
+Graphical Install does most of the work.  Just select ssh server and base components.  Web-server installs too many modules.
+Log in as root to install required packages.
+```
+su -
+apt install at
+```
 
 # Install Apache, PHP (with cli) and Composer
 ```
-sudo apt install apache2 -y
+apt install php-common libapache2-mod-php php-cli
 ```
 
 Go to ip address, see if apache start page works, then get rid of page.
 ```
-sudo rm /var/www/html/index.html
+rm /var/www/html/index.html
 ```
 
+Install Composer, execute script from https://getcomposer.org/download/
 ```
-sudo apt install php -y
-sudo apt install php-cli unzip curl -y
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
+mv composer.phar /usr/local/bin/composer
 ```
 Verify composer is installed
 ```
 composer --version
 ```
-Install api client for google and cron scheduler
+Install api client for google in the web directory
 ```
+cd /var/www/html
 composer require google/apiclient
-composer require peppeocchi/php-cron-scheduler
-
 ```
 
 
-# Create Service
+# Get control, status, and scheduler
 ```
-sudo nano /etc/systemd/system/php-audio.service
-```
-```
-[Unit]
-Description=Bell Schedule PHP Script
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/php /var/www/html/execute.php
-User=pi
-Group=www-data
-
-[Install]
-WantedBy=multi-user.target
-```
-Then enable service:
-```
-sudo systemctl enable php-audio.service
-sudo systemctl start php-audio.service
-sudo systemctl status php-audio.service
 ```
 
-# Reboot Scheduler
-```
-sudo nano /etc/systemd/system/reboot-daily.service
-```
-```
-[Unit]
-Description=Reboot the system daily at 6 AM
 
-[Service]
-Type=simple
-ExecStart=/usr/bin/systemctl --force reboot
-```
-Then set timer
-```
-sudo nano /etc/systemd/system/reboot-daily.timer
-```
-```
-[Unit]
-Description=Daily timer to reboot the system at 6 AM
-
-[Timer]
-OnCalendar=*-*-* 06:00:00
-
-[Install]
-WantedBy=timers.target
-```
 # Optional Video output status screen
 ```
 sudo apt install --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox cec-utils xdotool chromium-br>
