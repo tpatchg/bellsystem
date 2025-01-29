@@ -1,5 +1,5 @@
 <?php
-namespace Actions\ScheduleJobs;
+namespace Actions\SetSchedule;
 
 require __DIR__ . '/vendor/autoload.php';
 
