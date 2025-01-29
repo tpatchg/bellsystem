@@ -1,7 +1,9 @@
 <?php
+namespace Actions\ScheduleJobs;
+
 require __DIR__ . '/vendor/autoload.php';
 
-namespace Actions\ScheduleJobs;
+
 
 use App\Models\Application;
 use Google\Client;
