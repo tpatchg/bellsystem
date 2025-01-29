@@ -8,12 +8,12 @@ Graphical Install does most of the work.  Just select ssh server and base compon
 Log in as root to install required packages.
 ```
 su -
-apt install at
+apt install at -y
 ```
 
 # Install Apache, PHP (with cli) and Composer
 ```
-apt install php-common libapache2-mod-php php-cli
+apt install apache2 php-cli php-fpm -y
 ```
 
 Go to ip address, see if apache start page works, then get rid of page.
