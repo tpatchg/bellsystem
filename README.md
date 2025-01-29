@@ -14,6 +14,9 @@ apt install at -y
 # Install Apache, PHP (with cli) and Composer
 ```
 apt install apache2 php-cli php-fpm -y
+a2enmod proxy_fcgi setenvif
+a2enconf php8.2-fpm
+systemctl restart apache2
 ```
 
 Go to ip address, see if apache start page works, then get rid of page.
