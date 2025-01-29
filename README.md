@@ -8,7 +8,8 @@ Graphical Install does most of the work.  Just select ssh server and base compon
 Log in as root to install required packages.
 ```
 su -
-apt install at -y
+apt install at libasound2 alsa-utils mpg123 -y 
+alsactl init
 ```
 
 # Install Apache, PHP (with cli) and Composer
