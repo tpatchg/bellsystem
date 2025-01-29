@@ -28,9 +28,11 @@ Install Composer, execute script from https://getcomposer.org/download/
 ```
 mv composer.phar /usr/local/bin/composer
 ```
-Verify composer is installed
+Verify composer is installed, then change site ownership to user, and exit root.
 ```
 composer --version
+chown -R user:root /var/www/html
+exit
 ```
 Install api client for google in the web directory
 ```
@@ -40,7 +42,9 @@ composer require google/apiclient
 
 
 # Get control, status, and scheduler
+Get the files above into the /var/www/html directory.
 ```
+
 ```
 
 
