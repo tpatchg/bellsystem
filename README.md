@@ -27,7 +27,7 @@ rm /var/www/html/index.html
 
 Change site ownership to someuser, allow www-data to execute at.
 ```
-echo "www-data" | sudo tee -a /etc/at.allow
+echo "www-data" | tee -a /etc/at.allow
 chown -R someuser:root /var/www/html
 ```
 
