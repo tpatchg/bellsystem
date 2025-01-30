@@ -20,21 +20,28 @@ a2enconf php8.2-fpm
 systemctl restart apache2
 ```
 
-Go to ip address, see if apache start page works, then get rid of page.
+Go to hostname/ip to see if apache start page works, then get rid of page.
 ```
 rm /var/www/html/index.html
 ```
+
+Change site ownership to someuser, allow www-data to execute at.
+```
+echo "www-data" | sudo tee -a /etc/at.allow
+chown -R someuser:root /var/www/html
+```
+
 
 Install Composer, execute script from https://getcomposer.org/download/
 ```
 mv composer.phar /usr/local/bin/composer
 ```
-Verify composer is installed, then change site ownership to user, and exit root.
+
+Exit root and proceed as user for site project
 ```
-composer --version
-chown -R user:root /var/www/html
 exit
 ```
+
 Install api client for google in the web directory
 ```
 cd /var/www/html
