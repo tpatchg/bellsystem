@@ -9,7 +9,7 @@ Log in as root to install required packages.
 ```
 su -
 apt install at libasound2 alsa-utils mpg123 -y 
-alsactl init
+alsactl -L init
 ```
 
 # Install Apache, PHP (with cli) and Composer
@@ -25,9 +25,10 @@ Go to hostname/ip to see if apache start page works, then get rid of page.
 rm /var/www/html/index.html
 ```
 
-Change site ownership to someuser, allow www-data to execute at.
+Allow www-data to execute at and audio devices, Change site ownership to someuser.
 ```
 echo "www-data" | tee -a /etc/at.allow
+adduser www-data audio
 chown -R someuser:root /var/www/html
 ```
 
